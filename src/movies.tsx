@@ -4,8 +4,8 @@ const movie = data.MovieData;
 function MovieList() {
   return (
     <div>
-      <table className="table table-bordered table-striped">
-        <thead className="font-weight-bold">
+      <table>
+        <thead>
           <tr>
             <td>Category</td>
             <td>Title</td>
