@@ -1,35 +1,36 @@
 import data from './MovieData.json';
-const movie = data.MovieData;
+import Table from 'react-bootstrap/Table';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
 function MovieList() {
-  return (
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <td>Category</td>
-            <td>Title</td>
-            <td>Year</td>
-            <td>Director</td>
-            <td>Rating</td>
-            <td>Edited</td>
-          </tr>
-        </thead>
+  const movies = data.MovieData;
 
-        <tbody>
-          {movie.map((m) => (
-            <tr>
-              <td>{m.Category}</td>
-              <td>{m.Title}</td>
-              <td>{m.Year}</td>
-              <td>{m.Director}</td>
-              <td>{m.Rating}</td>
-              <td>{m.Edited}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+  return (
+    <Table striped bordered hover>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Title</th>
+          <th>Year</th>
+          <th>Director</th>
+          <th>Rating</th>
+          <th>Edited</th>
+        </tr>
+      </thead>
+      <tbody>
+        {movies.map((movie, index) => (
+          <tr key={index}>
+            <td>{movie.Category}</td>
+            <td>{movie.Title}</td>
+            <td>{movie.Year}</td>
+            <td>{movie.Director}</td>
+            <td>{movie.Rating}</td>
+            <td>{movie.Edited}</td>
+          </tr>
+        ))}
+      </tbody>
+    </Table>
   );
 }
 
