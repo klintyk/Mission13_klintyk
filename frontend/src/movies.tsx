@@ -1,12 +1,23 @@
-import data from './MovieData.json';
 import Table from 'react-bootstrap/Table';
+import {Movie} from './types/movie'
+import {useEffect, useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
 function MovieList() {
-  const movies = data.MovieData;
+  const[MovieData, setMovieData] = useState<Movie[]>([]);
 
+  useEffect(()=>{
+ const fetchMovie = async () =>{
+    const rsp = await fetch('https://localhost:7121/api/movie');
+    const temp = await rsp.json();
+    setMovieData(temp);
+  }
+  fetchMovie();
+  },[]);
+ 
   return (
+    
     <Table striped bordered hover>
       <thead>
         <tr>
@@ -19,14 +30,14 @@ function MovieList() {
         </tr>
       </thead>
       <tbody>
-        {movies.map((movie, index) => (
-          <tr key={index}>
-            <td>{movie.Category}</td>
-            <td>{movie.Title}</td>
-            <td>{movie.Year}</td>
-            <td>{movie.Director}</td>
-            <td>{movie.Rating}</td>
-            <td>{movie.Edited}</td>
+        {MovieData.map((m) => (
+          <tr key={m.movieId}>
+            <td>{m.category}</td>
+            <td>{m.title}</td>
+            <td>{m.year}</td>
+            <td>{m.director}</td>
+            <td>{m.rating}</td>
+            <td>{m.edited}</td>
           </tr>
         ))}
       </tbody>
